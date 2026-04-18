@@ -1,0 +1,20 @@
+datasets:
+  dual_image_retrieval:
+    data_dir: /data4/workspace/zlt/CAPO_ret/dataset
+    data_type: images
+
+    build_info:
+      images:
+        storage: /data4/workspace/zlt/CAPO_ret/dataset/coco2014
+      images2:
+        storage: ${datasets.dual_image_retrieval.data_dir}/coco2014_cloud
+      annotations:
+        train:
+          url: ${datasets.dual_image_retrieval.data_dir}/coco2014/coco_karpathy_train.json
+          storage: ${datasets.dual_image_retrieval.data_dir}/coco2014/coco_karpathy_train.json
+        val:
+          url: ${datasets.dual_image_retrieval.data_dir}/coco2014/coco_karpathy_val.json
+          storage: ${datasets.dual_image_retrieval.data_dir}/coco2014/coco_karpathy_val.json
+        test:
+          url: ${datasets.dual_image_retrieval.data_dir}/coco2014/coco_karpathy_test.json
+          storage: ${datasets.dual_image_retrieval.data_dir}/coco2014/coco_karpathy_test.json

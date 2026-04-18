@@ -1,0 +1,78 @@
+# joint3 conda environment.
+#
+# Validated on 2026-04-17 to run all four tasks in this repo:
+#   * capo_cls        (ceo / tpt / ams / cdc / ...)
+#   * capo_ret        (clip_ret_ceo / clip_ret_tpt / clip_ret_ams / ...)
+#   * capo_seg        (MaskCLIP + ceo_seg)
+#   * capo_joint      (clip_joint3_ceo)
+#   * enc2dec         (codec utilities)
+#
+# Note: the vendored third_party packages (clip with CoOp extension / lavis /
+# mmseg MaskCLIP-fork) are loaded via PYTHONPATH set by scripts/_paths.sh,
+# so they are NOT listed here as pip deps.
+
+name: joint3
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.8.20
+  - pip
+  - pip:
+      # --- pytorch (CUDA 11.7) ---
+      - --extra-index-url https://download.pytorch.org/whl/cu117
+      - torch==1.13.1+cu117
+      - torchvision==0.14.1+cu117
+      - torchaudio==0.13.1+cu117
+
+      # --- mmcv / mmseg stack (must match mmseg 0.20.2 API) ---
+      - mmcv-full==1.7.2
+      # mmsegmentation is vendored at third_party/mmseg; do NOT pip install it.
+
+      # --- CLIP / CoOp / OpenAI clip helpers ---
+      # third_party/clip (vendored, CoOp extended) is preferred via PYTHONPATH.
+      # The plain openai clip package is harmless to keep in the env as a
+      # fallback; it will be shadowed by third_party when _paths.sh is sourced.
+      - ftfy==6.2.3
+      - regex==2024.11.6
+
+      # --- LAVIS deps (lavis itself is vendored at third_party/lavis) ---
+      - transformers==4.30.2
+      - fairscale==0.4.13
+      - iopath==0.1.10
+      - omegaconf==2.3.0
+      - decord==0.6.0
+      - opencv-python==4.12.0.88
+      - einops==0.8.1
+      # --- Optional LAVIS extras (add only if you need them) ---
+      # The CLIP retrieval / joint3 stacks do NOT need these. Add back if you
+      # start using LAVIS's BLIP / BLIP-2 / ALBEF / img2prompt families.
+      # - sentencepiece          # BLIP / ALBEF tokenisers
+      # - spacy==3.7.6           # BLIP-2 / img2prompt_vqa (clip_joint3 already mocks it)
+
+      # --- generic scientific stack ---
+      - numpy==1.24.3
+      - scipy==1.10.1
+      - scikit-learn==1.3.2
+      - scikit-image==0.21.0
+      - pandas==2.0.3
+      - pillow==10.4.0
+      - matplotlib==3.7.5
+      - timm==1.0.26
+      - tqdm==4.65.2
+      - protobuf==5.29.4
+
+# Activation recipe (repeat at the start of each bash script):
+#   conda activate joint3
+#   cd /data4/workspace/zlt/capo
+#   source scripts/_paths.sh
+#
+# Note on layout: artifacts are NO LONGER collected under capo/outputs/.
+# Each task directory owns its own artifact symlinks:
+#   capo_cls/{logs,results,checkpoints,saved_params_ams,saved_prompts_nctx,clip_cache}
+#   capo_ret/{logs,output,pretrained,saved_params_ams_ret,saved_prompts_ret}
+#   capo_seg/{logs,pretrain,work_dirs}     (work_dirs is a real dir)
+#   capo_joint/work_dirs                   (real dir)
+#   enc2dec/{logs,models,intermediate,intermediate_qp7}
+# all pointing back to the original CAPO_cls / CAPO_ret / MaskCLIP / enc2dec locations.

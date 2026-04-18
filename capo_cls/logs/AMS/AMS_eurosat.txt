@@ -1,0 +1,11 @@
+evaluating: eurosat
+ *  Acc@1 20.901 Acc@5 69.975
+=> Acc. on testset [eurosat]: @1 20.901233673095703/ @5 69.97531127929688
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+eurosat	
+
+20.90	
+

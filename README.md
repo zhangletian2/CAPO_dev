@@ -1,0 +1,267 @@
+# capo
+
+Unified repository for the **CEO** family of test-time adaptation methods
+across three downstream tasks (classification, retrieval, segmentation),
+plus the cross-task joint setting and the enc/dec compression toolkit.
+
+---
+
+## Layout
+
+```
+capo/
+  third_party/             vendored clip / lavis / mmseg (MaskCLIP fork)
+  capo_cls/                classification task  (CEO, TPT, AMS, CDC, ...)
+  capo_ret/                image<->text retrieval task
+  capo_seg/                open-vocabulary segmentation (MaskCLIP-based)
+  capo_joint/              joint3 setting (cls + ret + seg shared prompt)
+  enc2dec/                 independent encoder/decoder / codec tooling
+  datasets/                root-level symlinks (created by scripts/setup.sh)
+  environments/joint3.yaml conda env spec (covers all 5 entry points)
+  scripts/
+    _paths.sh              path + PYTHONPATH definitions, sourced by every task script
+    setup.sh               one-shot post-clone bootstrap
+  .env.example             template for per-clone local paths
+```
+
+Heavy artifacts (datasets, pretrained weights, logs, checkpoints, intermediate
+tensors) are **not** checked in; `scripts/setup.sh` turns them into
+symlinks pointing at the locations you declare in `.env`.
+
+---
+
+## Download external assets
+
+All weights and datasets are available on **Aliyun Drive** (阿里云盘).
+Download the folders you need and point `.env` at them (see Quick Start below).
+
+**Aliyun Drive link**: `https://www.aliyundrive.com/s/<SHARE_ID>` (TODO: replace with actual share link)
+
+```
+云盘目录结构:
+/Pretrained/
+  clip/                 RN50.pt  RN101.pt  ViT-B-16.pt  ViT-L-14.pt      (~1.7 GB)
+  enc2dec/models/       model0_qp1.pk  model0_qp7.pk                     (~358 MB)
+  maskclip/             12 .pth files (backbones + text embeddings)        (~895 MB)
+/Dataset/
+  Classification/       15 datasets, each with raw + new.tar.gz (QP=1)    (~95 GB total)
+  Retrieval/            coco2014/ + coco2014_cloud/                       (~12.6 GB)
+  Segmentation/         VOCdevkit/VOC2012.tar.gz                          (~1.9 GB)
+```
+
+After downloading, extract `.tar.gz` archives in-place and point `.env` at  
+the top-level directories. See `[ASSETS.md](ASSETS.md)` for the full  
+per-file inventory with exact sizes.
+
+---
+
+## Quick start
+
+```bash
+# 1. Clone
+git clone https://github.com/<you>/capo.git
+cd capo
+
+# 2. Create the conda env (1 env covers cls / ret / seg / joint / enc2dec)
+conda env create -f environments/joint3.yaml
+conda activate joint3
+
+# 3. Declare per-clone paths (pointers to your local data / weight folders)
+cp .env.example .env
+$EDITOR .env
+
+# 4. Bootstrap: dataset symlinks + artifact dirs + compile arithmetic coder
+bash scripts/setup.sh
+
+# 5. Produce enc2dec cloud reconstructions (QP=1 only, required for CEO edge-cloud runs)
+bash scripts/preprocess_enc2dec.sh all      # ~2 h on one RTX 4090 + 15 min for ret
+
+# 6. Activate paths & run
+source scripts/_paths.sh     # sets PYTHONPATH, TORCH_HOME, CUDA_VISIBLE_DEVICES
+cd capo_cls && python ceo.py ...
+```
+
+Step 5 is only needed once per clone. You can also **skip regeneration
+entirely** by downloading a pre-built `new/` / `coco2014_cloud/` bundle
+into the raw dataset trees — see `[ASSETS.md](ASSETS.md)`.
+
+All task shell scripts under `capo_<task>/scripts/*.sh` self-source
+`scripts/_paths.sh`, so you can also just do
+
+```bash
+bash capo_ret/scripts/tta_coco_ceo_i2t.sh 4 5e-4 80 0.6 0.8
+```
+
+from the repo root.
+
+---
+
+## Required external assets
+
+See `[ASSETS.md](ASSETS.md)` for the complete catalog (sizes, sub-folder
+layouts, suggested upload bundles). Short summary:
+
+
+| Bucket                                                | Where it lands                                | Size    | `.env` variable                        |
+| ----------------------------------------------------- | --------------------------------------------- | ------- | -------------------------------------- |
+| OpenAI CLIP weights (shared cls+ret)                  | `capo_cls/clip_cache/`                        | ~1.7 GB | `CLIP_CACHE_SRC`                       |
+| enc2dec codec (QP=1 only)                             | `enc2dec/models/`                             | 85 MB   | `ENC2DEC_MODELS_SRC`                   |
+| MaskCLIP pretrain (backbones + text emb)              | `capo_seg/pretrain/`                          | 895 MB  | `SEG_PRETRAIN_SRC`                     |
+| Raw cls datasets (15 sub-folders, 360k images)        | `capo_cls/dataset/`                           | ~74 GB  | `CLS_DATA_SRC`                         |
+| Raw ret datasets (coco / flickr / nocaps)             | `capo_ret/dataset/`                           | ~22 GB  | `RET_DATA_SRC`                         |
+| Raw seg datasets (ADE + VOC, ~45k images)             | `capo_seg/data/`                              | ~6 GB   | `SEG_DATA_SRC`                         |
+| cls reconstructed `new/` (QP=1, ~268k images)         | co-located under `capo_cls/dataset/<ds>/new/` | ~21 GB  | regenerated by `preprocess_enc2dec.sh` |
+| ret reconstructed `coco2014_cloud/` (QP=1, 5k images) | `capo_ret/dataset/coco2014_cloud/val2014/`    | 199 MB  | regenerated by `preprocess_enc2dec.sh` |
+
+
+CLIP weights are shared between cls and ret — `setup.sh` auto-creates
+`capo_ret/pretrained/clip/` as a symlink to `capo_cls/clip_cache/`.
+QP=7 variants (`new_qp7/`, `coco2014_cloud_qp7/`, `model0_qp7.pk`) are
+intentionally **not used** by this repo.
+
+## enc2dec preprocessing
+
+The CEO edge-cloud pipeline needs a "cloud-side" image view produced by an
+image codec at QP=1. After Step 4 above, run:
+
+```bash
+# Run once per clone. The outputs are written INSIDE the raw dataset trees,
+# so that path-resolving code finds them automatically.
+bash scripts/preprocess_enc2dec.sh all
+```
+
+Sub-commands:
+
+```bash
+bash scripts/preprocess_enc2dec.sh cls cuda:0              # 14 cls datasets, single GPU
+bash scripts/preprocess_enc2dec.sh ret 4 "0,1,2,3"         # ret (5k images), 4 GPUs in parallel
+```
+
+What each step produces:
+
+- cls: 9 fine-grained (`flowers / dtd / pets / cars / ucf101 / caltech101 / food101 / sun397 / eurosat`)
+each encoded using the `**test` split** of their `split_zhou_*.json`;
+`fgvc_aircraft` encoded using `images_variant_test.txt`;
+4 ImageNet OOD variants (`A / R / Sketch / V2`) encoded as **full sets**.
+Each dataset gets a sibling `new/` folder mirroring the original image
+class layout.
+- ret: encodes the 5000 images of COCO val2014 listed in
+`coco_karpathy_test.json`, writing to `coco2014_cloud/val2014/`.
+
+See `[capo/enc2dec/scripts/preprocess_cls.sh](enc2dec/scripts/preprocess_cls.sh)`
+and `[capo/enc2dec/scripts/preprocess_ret.sh](enc2dec/scripts/preprocess_ret.sh)`
+for the individual dataset commands if you want to re-run only one.
+
+**Skip regeneration** by downloading prebuilt `new/` / `coco2014_cloud/`
+archives and extracting them in place (see §3 of `[ASSETS.md](ASSETS.md)`).
+
+---
+
+## Running each task
+
+All commands assume `conda activate joint3 && source scripts/_paths.sh`.
+
+### capo_cls (classification)
+
+```bash
+cd capo_cls
+python ceo.py --dataset I --testset I/R/A/V/K/K/R --arch RN50 \
+              --cloud_arch ViT-B/16 --tta_steps 1 --tau 0.3 --beta 0.9
+```
+
+See `capo_cls/scripts/` for 40+ pre-made runs (offline / fewshot / OOD /
+continual / AMS-baseline / TPT-baseline).
+
+### capo_ret (retrieval)
+
+```bash
+cd capo_ret
+bash scripts/tta_coco_ceo_i2t.sh 4 5e-4 80 0.6 0.8
+# args: CUDA lr ent_top_k tau beta
+```
+
+### capo_seg (segmentation)
+
+```bash
+cd capo_seg
+bash scripts/run_ceo_seg.sh          # VOC + ADE20K sweeps
+```
+
+### capo_joint (joint3)
+
+```bash
+cd capo_joint
+bash scripts/run_joint3_ceo.sh 4 5 6 0   # edge cloud seg GPUs, max_samples=0 (all)
+```
+
+### enc2dec (image codec)
+
+```bash
+cd enc2dec
+bash scripts/run_enc_dec_coco_test_2014.sh
+```
+
+---
+
+## Environments
+
+One conda env is enough. See [environments/joint3.yaml](environments/joint3.yaml):
+
+- Python 3.8.20
+- PyTorch 1.13.1 (cu117)
+- mmcv-full 1.7.2 (mmseg vendored at `third_party/mmseg`, NOT pip-installed)
+- timm 1.0.26, transformers 4.30.2, fairscale 0.4.13
+- LAVIS deps (decord, opencv-python, einops, iopath, omegaconf, ftfy, regex, spacy)
+- The CoOp-extended CLIP package is vendored at `third_party/clip`; it
+shadows the pip-installed `clip` via `PYTHONPATH` set in
+`scripts/_paths.sh`.
+
+`sentencepiece` is **not** installed by default. Add it if you want to use
+LAVIS BLIP / ALBEF tokenisers:
+
+```bash
+pip install sentencepiece
+```
+
+---
+
+## Stage notes
+
+**Stage-1 complete.** All code moved; paths normalised; scripts
+self-contained via `scripts/_paths.sh`. `module_arithmeticcoding` now
+rebuilt from source by `setup.sh`.
+
+**Stage-2 (planned).** Drop the legacy `sys.path.insert` in
+`capo_joint/clip_joint3_ceo.py` and make it a proper package-style import.
+
+---
+
+## Directory symlinks after `setup.sh`
+
+A successful `setup.sh` run leaves the following layout (`ls -l`):
+
+```
+capo/
+├── datasets/cls -> $CLS_DATA_SRC
+├── datasets/ret -> $RET_DATA_SRC
+├── datasets/seg -> $SEG_DATA_SRC
+├── capo_cls/
+│   ├── dataset    -> ../datasets/cls
+│   ├── clip_cache -> $CLIP_CACHE_SRC            # if set
+│   ├── logs/ results/ checkpoints/ saved_params_ams/ saved_prompts_nctx/   (real dirs if *_OUTPUT_SRC unset)
+│   └── ...
+├── capo_ret/
+│   ├── dataset    -> ../datasets/ret
+│   ├── pretrained -> $RET_PRETRAINED_SRC         # if set
+│   └── ...
+├── capo_seg/
+│   ├── data       -> ../datasets/seg
+│   ├── pretrain   -> $SEG_PRETRAIN_SRC           # if set
+│   └── ...
+├── capo_joint/
+│   └── work_dirs/
+└── enc2dec/
+    ├── models     -> $ENC2DEC_MODELS_SRC         # if set
+    └── ...
+```
+

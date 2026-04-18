@@ -1,0 +1,1 @@
+[DRY] python AppEncDec.py --command all --input /data4/workspace/zlt/capo/datasets/ret/coco2014/val2014 --output /data4/workspace/zlt/capo/datasets/ret/coco2014_cloud/val2014 --json /data4/workspace/zlt/capo/datasets/ret/coco2014/coco_karpathy_test.json --intermediate intermediate/ret_coco_test_qp1 --shard 3/4 --qp 1 --model_type 0 --device cuda:0

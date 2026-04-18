@@ -1,0 +1,60 @@
+GPU 6: NVIDIA GeForce RTX 4090
+Prompt: 4 tokens × 512d  dtype=torch.float32  size=8192 B (8.00 KB)
+Avg bitstream/image: 25.23 KB  (built-in table (new))
+
+──────────────────────────────────────────────────
+Benchmarking 500 samples  (warmup=10)
+  uplink=75.0%  selection_p=0.1  tau=0.4  beta=0.9  tta_steps=1
+──────────────────────────────────────────────────
+  [   200/500]  sync=62.11%  async=54.21%  cloud=167.8ms  distill=201.5ms
+  [   400/500]  sync=64.10%  async=57.18%  cloud=167.3ms  distill=199.9ms
+
+CSV saved → results/e2e_bench/bench_sun397_up75.csv  (490 rows)
+
+========================================================================
+  CAPO E2E Benchmark  |  Dataset: sun397  |  GPU: NVIDIA GeForce RTX 4090
+  Samples: 490   Uplinked: 356 (72.7%)
+========================================================================
+
+  [Accuracy]
+    Sync  (post-TTA):  63.67%
+    Async (pre-TTA):   57.55%
+    Δ (sync − async):  +6.12%
+
+  [Communication per uplinked sample]
+    Upload  (compressed image):    25.23 KB
+    Download (prompt ctx):          8.00 KB
+    Total:                         33.23 KB
+    Effective avg/sample:          24.14 KB
+
+  [Compute time per uplinked sample (ms)]
+    Edge entropy check:        56.71 ±  2.81
+    Cloud TTA (prompt opt):   169.02 ±  9.75
+    Cloud (edge distill):     201.67 ±  2.13
+    ── Cloud total:           370.69
+    Edge final inference:      58.04 ±  3.83
+    ── Total compute:         485.44
+
+  [Total latency under different bandwidths (ms)]
+       Bandwidth      Comm    Compute   Sync Total     Async
+    ────────────  ────────  ─────────  ───────────  ────────
+        1000 Mbps      0.27     485.44       485.71     56.71
+         100 Mbps      2.72     485.44       488.16     56.71
+          50 Mbps      5.44     485.44       490.88     56.71
+          10 Mbps     27.22     485.44       512.66     56.71
+           5 Mbps     54.44     485.44       539.88     56.71
+           1 Mbps    272.22     485.44       757.66     56.71
+
+  [Communication comparison: CAPO vs AMS]
+    CAPO: 33.23 KB/sample   AMS: 9464.58 KB/sample
+       Bandwidth    CAPO comm     AMS comm    Ratio
+    ────────────  ───────────  ───────────  ───────
+        1000 Mbps       0.27ms         78ms     285×
+         100 Mbps       2.72ms        775ms     285×
+          50 Mbps       5.44ms       1551ms     285×
+          10 Mbps      27.22ms       7753ms     285×
+           5 Mbps      54.44ms      15507ms     285×
+           1 Mbps     272.22ms      77534ms     285×
+
+========================================================================
+

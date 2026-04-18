@@ -1,0 +1,11 @@
+evaluating: flower102
+ *  Acc@1 61.876 Acc@5 80.227
+=> Acc. on testset [flower102]: @1 61.875762939453125/ @5 80.22736358642578
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+flower102	
+
+61.88	
+

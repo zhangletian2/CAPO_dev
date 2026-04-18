@@ -1,0 +1,47 @@
+GPU 2: NVIDIA GeForce RTX 4090
+text_encoder trainable: 148 tensors, 153573376 B (149974.00 KB, 146.46 MB)
+Avg bitstream/image: 0.13 KB  (built-in table (new))
+
+────────────────────────────────────────────────────────────
+AMS Benchmarking 500 samples  (warmup=10)
+  lr=1e-06  tta_steps=1  bs=64
+────────────────────────────────────────────────────────────
+  [   200/500]  acc=22.11%  cloud=32.9ms  distill=143.8ms  final=26.3ms
+  [   400/500]  acc=23.33%  cloud=32.7ms  distill=178.2ms  final=28.0ms
+
+CSV saved → results/ams_bench/bench_eurosat.csv  (490 rows)
+
+========================================================================
+  AMS E2E Benchmark  |  Dataset: eurosat  |  GPU: NVIDIA GeForce RTX 4090
+  Samples: 490   (100% uplink — all samples)
+========================================================================
+
+  [Accuracy]
+    Post-TTA:  24.69%
+
+  [Communication per sample]
+    Upload  (compressed image):         0.13 KB
+    Download (text_encoder):       149974.00 KB
+    Total:                         149974.13 KB
+
+  [Compute time per sample (ms)]
+    Cloud inference:       32.85 ±  0.80
+    KL distillation:     140.09 ± 24.46
+    Edge final infer:     25.05 ±  7.73
+    ── Total compute:    197.99
+
+  [Total latency under different bandwidths (ms)]
+       Bandwidth        Comm    Compute   Sync Total
+    ────────────  ──────────  ─────────  ───────────
+        1000 Mbps     1228.59     197.99      1426.58
+         100 Mbps    12285.88     197.99     12483.87
+          50 Mbps    24571.76     197.99     24769.75
+          10 Mbps   122858.81     197.99    123056.80
+           5 Mbps   245717.61     197.99    245915.60
+           1 Mbps  1228588.07     197.99   1228786.06
+
+  [Trainable parameters (text_encoder)]
+    Download size:  149974.00 KB  (146.46 MB)
+
+========================================================================
+

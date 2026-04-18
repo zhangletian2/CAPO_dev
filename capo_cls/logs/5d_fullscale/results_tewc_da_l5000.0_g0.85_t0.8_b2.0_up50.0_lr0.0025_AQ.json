@@ -1,0 +1,120 @@
+{
+  "metrics": {
+    "method": "tewc_da_l5000.0_g0.85_t0.8_b2.0_up50.0_lr0.0025_AQ",
+    "desc": "keep T+S, T-EWC(\u03bb=5000.0,\u03b3=0.85), AQ",
+    "domains": [
+      "I",
+      "A",
+      "V",
+      "R",
+      "K"
+    ],
+    "elapsed_s": 125845.85539484024,
+    "baseline": {
+      "I": {
+        "student": 58.14
+      },
+      "A": {
+        "student": 21.786666666666665
+      },
+      "V": {
+        "student": 51.5
+      },
+      "R": {
+        "student": 56.120000000000005
+      },
+      "K": {
+        "student": 33.33136827212167
+      }
+    },
+    "mean_baseline_s": 44.17560698775767,
+    "phase1": {
+      "I": {
+        "pre_s": 58.14,
+        "pre_t": null,
+        "post_s": 61.636,
+        "post_t": 67.11200000000001,
+        "uplink": 49.902
+      },
+      "A": {
+        "pre_s": 23.226666666666667,
+        "pre_t": null,
+        "post_s": 24.133333333333333,
+        "post_t": 47.74666666666666,
+        "uplink": 51.18666666666667
+      },
+      "V": {
+        "pre_s": 53.459999999999994,
+        "pre_t": null,
+        "post_s": 54.269999999999996,
+        "post_t": 61.129999999999995,
+        "uplink": 49.45
+      },
+      "R": {
+        "pre_s": 57.43333333333334,
+        "pre_t": null,
+        "post_s": 61.650000000000006,
+        "post_t": 74.09333333333333,
+        "uplink": 50.06333333333334
+      },
+      "K": {
+        "pre_s": 34.88966181296547,
+        "pre_t": null,
+        "post_s": 35.066517322014576,
+        "post_t": 46.44225667629547,
+        "uplink": 50.18766334571322
+      }
+    },
+    "phase2": {
+      "I": {
+        "s": 58.989999999999995
+      },
+      "A": {
+        "s": 21.706666666666667
+      },
+      "V": {
+        "s": 52.05
+      },
+      "R": {
+        "s": 59.71333333333333
+      },
+      "K": {
+        "s": 34.33158442885496
+      }
+    },
+    "mean_post_s": 47.35117013106958,
+    "mean_frozen_s": 45.358316885770996,
+    "mean_gain": 3.175563143311912,
+    "phase2_gain": 1.1827098980133286,
+    "BT": -1.9928532452985928
+  },
+  "args": {
+    "data": "./dataset",
+    "domains": "IAVRK",
+    "samples_per_domain": 999999,
+    "dataset_mode": "test",
+    "arch": "RN50",
+    "cloud_arch": "ViT-B/16",
+    "resolution": 224,
+    "workers": 8,
+    "batch_size": 64,
+    "lr": 0.0025,
+    "print_freq": 500,
+    "gpu": 7,
+    "selection_p": 0.1,
+    "tta_steps": 1,
+    "n_ctx": 4,
+    "ctx_init": "a_photo_of_a",
+    "seed": 0,
+    "tau": 0.8,
+    "beta": 2.0,
+    "uplink_percent": 50.0,
+    "method": "tewc_aq",
+    "ewc_lambda": 5000.0,
+    "ewc_gamma": 0.85,
+    "ewc_anchor": "domain",
+    "eval_teacher": false,
+    "output_dir": "logs/5d_fullscale",
+    "deterministic": false
+  }
+}

@@ -1,0 +1,106 @@
+[GPU 0] T2I: n_ctx=4, tau=1.0, beta=3.4
+/home/user/anaconda3/envs/rlcf/lib/python3.8/site-packages/timm/models/hub.py:4: FutureWarning: Importing from timm.models.hub is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+/home/user/anaconda3/envs/rlcf/lib/python3.8/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+/home/user/anaconda3/envs/rlcf/lib/python3.8/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/user/anaconda3/envs/rlcf/lib/python3.8/site-packages/timm/models/helpers.py:7: FutureWarning: Importing from timm.models.helpers is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+/home/user/anaconda3/envs/rlcf/lib/python3.8/site-packages/torchvision/datapoints/__init__.py:12: UserWarning: The torchvision.datapoints and torchvision.transforms.v2 namespaces are still Beta. While we do not expect major breaking changes, some APIs may still change according to user feedback. Please submit any feedback you may have in this issue: https://github.com/pytorch/vision/issues/6753, and you can also check out https://github.com/pytorch/vision/issues/7319 to learn more about the APIs that we suspect might involve future changes. You can silence this warning by calling torchvision.disable_beta_transforms_warning().
+  warnings.warn(_BETA_TRANSFORMS_WARNING)
+/home/user/anaconda3/envs/rlcf/lib/python3.8/site-packages/torchvision/transforms/v2/__init__.py:54: UserWarning: The torchvision.datapoints and torchvision.transforms.v2 namespaces are still Beta. While we do not expect major breaking changes, some APIs may still change according to user feedback. Please submit any feedback you may have in this issue: https://github.com/pytorch/vision/issues/6753, and you can also check out https://github.com/pytorch/vision/issues/7319 to learn more about the APIs that we suspect might involve future changes. You can silence this warning by calling torchvision.disable_beta_transforms_warning().
+  warnings.warn(_BETA_TRANSFORMS_WARNING)
+2026-03-24 17:22:56,111 [INFO] 
+=====  Running Parameters    =====
+2026-03-24 17:22:56,112 [INFO] {
+    "batch_size_eval": 1,
+    "batch_size_train": 1,
+    "device": "cuda",
+    "dist_url": "env://",
+    "distributed": false,
+    "evaluate": true,
+    "num_workers": 4,
+    "output_dir": "/data4/workspace/zlt/CAPO_ret/output/clip/Retrieval_COCO",
+    "seed": 42,
+    "task": "retrieval",
+    "test_splits": [
+        "test"
+    ],
+    "use_dist_eval_sampler": false,
+    "world_size": 1
+}
+2026-03-24 17:22:56,112 [INFO] 
+======  Dataset Attributes  ======
+2026-03-24 17:22:56,112 [INFO] 
+======== coco_retrieval =======
+2026-03-24 17:22:56,125 [INFO] {
+    "build_info": {
+        "annotations": {
+            "test": {
+                "md5": "3ff34b0ef2db02d01c37399f6a2a6cd1",
+                "storage": "/data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_test.json",
+                "url": "/data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_test.json"
+            },
+            "train": {
+                "md5": "aa31ac474cf6250ebb81d18348a07ed8",
+                "storage": "/data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_train.json",
+                "url": "/data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_train.json"
+            },
+            "val": {
+                "md5": "b273847456ef5580e33713b1f7de52a0",
+                "storage": "/data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_val.json",
+                "url": "/data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_val.json"
+            }
+        },
+        "images": {
+            "storage": "/data4/workspace/zlt/CAPO_ret/dataset/coco2014"
+        }
+    },
+    "data_dir": "/data4/workspace/zlt/CAPO_ret/dataset",
+    "data_type": "images",
+    "text_processor": {
+        "eval": {
+            "name": "blip_caption"
+        },
+        "train": {
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "eval": {
+            "image_size": 224,
+            "name": "clip_image_eval"
+        },
+        "train": {
+            "image_size": 224,
+            "name": "clip_image_train"
+        }
+    }
+}
+2026-03-24 17:22:56,125 [INFO] 
+======  Model Attributes  ======
+2026-03-24 17:22:56,125 [INFO] {
+    "arch": "clip",
+    "model_type": "ViT-B-16",
+    "pretrained": "openai"
+}
+2026-03-24 17:22:56,127 [INFO] Using existing file /data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_train.json.
+2026-03-24 17:22:56,129 [INFO] Using existing file /data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_val.json.
+2026-03-24 17:22:56,130 [INFO] Using existing file /data4/workspace/zlt/CAPO_ret/dataset/coco2014/coco_karpathy_test.json.
+2026-03-24 17:22:56,131 [INFO] Building datasets...
+2026-03-24 17:22:57,549 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2026-03-24 17:22:57,550 [INFO] Loaded 566747 records for train split from the dataset.
+2026-03-24 17:22:57,550 [INFO] Loaded 5000 records for val split from the dataset.
+2026-03-24 17:22:57,550 [INFO] Loaded 5000 records for test split from the dataset.
+2026-03-24 17:22:57,550 [INFO] Empty train splits.
+2026-03-24 17:22:57,550 [INFO] Empty train splits.
+2026-03-24 17:22:57,550 [INFO] Empty train splits.
+
+ {'precision': 'amp', 'output': '/data4/workspace/zlt/CAPO_ret/output/save_prompt_t2i_nctx_4', 'retrieval_task': 'text2image', 'arch': 'ViT-B-16', 'tta_steps': 1, 'lr': 0.0025, 'weight_decay': 0.0005, 'sample_k': 5, 'multiple_reward_models': 0, 'reward_arch': 'ViT-L-14', 'reward_process': 1, 'process_batch': 0, 'reward_amplify': 0, 'weighted_scores': 1, 'momentum_update': 0, 'update_freq': 256, 'update_w': 1.0, 'tta_momentum': 0.9999, 'cfg_path': '/data4/workspace/zlt/CAPO_ret/code/RLCF/retrieval/lavis/projects/clip/exp_coco_ret_tta.yaml', 'options': None, 'n_ctx': 4, 'ctx_init': 'a photo of a', 'tpt': True, 'tpt_steps': 1, 'sim_top_k': 256, 'ent_top_k': 40, 'lambda_kl': 0.0, 'tau': 1.0, 'beta': 3.4, 'edge': 'RN50', 'cloud': 'ViT-B-16', 'uplink_percent': 100.0, 'ent_tea': 1, 'ent_stu': 1, 'cloud_orig': 0, 'cloud_image_dir': '', 'onlinetpt': False, 'num_prompts': 1, 'save_prompt_dir': '/data4/workspace/zlt/CAPO_ret/saved_prompts_ret/nctx_4', 'max_samples': 5} 
+
+Not using distributed mode
+text2image retrieval:   0%|          | 0/25010 [00:00<?, ?it/s]text2image retrieval:   0%|          | 1/25010 [00:00<1:41:23,  4.11it/s]text2image retrieval:   0%|          | 3/25010 [00:00<48:56,  8.52it/s]  text2image retrieval:   0%|          | 5/25010 [00:00<41:17, 10.09it/s]text2image retrieval:   0%|          | 5/25010 [00:00<46:08,  9.03it/s]
+2026-03-24 17:23:07,835 [INFO] {'txt_r1': 0.02, 'txt_r5': 0.06, 'txt_r10': 0.08, 'txt_r_mean': 0.053, 'img_r1': 0.024, 'img_r5': 0.112, 'img_r10': 0.216, 'img_r_mean': 0.117, 'r_mean': 0.085, 'agg_metrics': 0.053}
+Test with arch=ViT-B-16, tta steps=1, lr=0.0025
+[GPU 0] T2I done.

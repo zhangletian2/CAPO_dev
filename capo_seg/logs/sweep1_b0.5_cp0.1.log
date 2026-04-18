@@ -1,0 +1,136 @@
+/home/user/anaconda3/envs/denseclip/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
+  warnings.warn(
+Building cloud model (ViT-B/16) ...
+2026-04-07 11:53:14,704 - mmseg - INFO - Loaded text embeddings from pretrain/voc_ViT16_npe_clip_text.pth
+2026-04-07 11:53:14,965 - mmseg - INFO - Loaded proj weights from pretrain/ViT16_clip_weights.pth
+load checkpoint from local path: pretrain/ViT16_clip_backbone.pth
+The model and loaded state dict do not match exactly
+
+missing keys in source state_dict: decode_head.text_embeddings, decode_head.proj.weight
+
+Building edge model (RN50) ...
+2026-04-07 11:53:19,534 - mmseg - INFO - Loaded text embeddings from pretrain/voc_RN50_npe_clip_text.pth
+2026-04-07 11:53:19,804 - mmseg - INFO - Loaded proj weights from pretrain/RN50_clip_weights.pth
+load checkpoint from local path: pretrain/RN50_clip_backbone.pth
+The model and loaded state dict do not match exactly
+
+missing keys in source state_dict: decode_head.text_embeddings, decode_head.q_proj.weight, decode_head.q_proj.bias, decode_head.k_proj.weight, decode_head.k_proj.bias, decode_head.v_proj.weight, decode_head.v_proj.bias, decode_head.c_proj.weight, decode_head.c_proj.bias
+
+Cloud trainable params: 2048
+Edge  trainable params: 2048
+2026-04-07 11:53:23,853 - mmseg - INFO - Loaded 1449 images
+Dataset: 1449 images, 20 classes
+TTA: steps=1, lr=0.005, selection_p=0.1, tau=0.4, beta=0.5
+[100/1449]  0.23s/img  avg 3.42s/img  ETA 76.8min
+[200/1449]  6.61s/img  avg 2.52s/img  ETA 52.4min
+[300/1449]  0.29s/img  avg 1.99s/img  ETA 38.2min
+[400/1449]  0.73s/img  avg 1.70s/img  ETA 29.7min
+[500/1449]  0.26s/img  avg 1.50s/img  ETA 23.8min
+[600/1449]  0.23s/img  avg 1.36s/img  ETA 19.2min
+[700/1449]  0.23s/img  avg 1.28s/img  ETA 16.0min
+[800/1449]  0.60s/img  avg 1.20s/img  ETA 13.0min
+[900/1449]  0.52s/img  avg 1.13s/img  ETA 10.4min
+[1000/1449]  2.78s/img  avg 1.09s/img  ETA 8.1min
+[1100/1449]  0.26s/img  avg 1.02s/img  ETA 6.0min
+[1200/1449]  0.42s/img  avg 0.98s/img  ETA 4.1min
+[1300/1449]  0.33s/img  avg 0.94s/img  ETA 2.3min
+[1400/1449]  0.30s/img  avg 0.90s/img  ETA 0.7min
+per class results:
+
++-------------+-------+-------+-------+
+|    Class    |  IoU  |  Acc  |  Prec |
++-------------+-------+-------+-------+
+|  aeroplane  | 72.86 | 85.68 | 82.96 |
+|   bicycle   | 52.73 | 81.01 | 60.17 |
+|     bird    | 55.43 | 62.44 | 83.14 |
+|     boat    | 26.21 |  75.9 | 28.59 |
+|    bottle   | 47.11 | 64.43 | 63.68 |
+|     bus     |  58.1 | 65.34 | 83.99 |
+|     car     | 65.02 |  84.9 | 73.51 |
+|     cat     | 54.63 | 60.72 | 84.49 |
+|    chair    | 17.44 | 19.77 | 59.68 |
+|     cow     | 28.82 | 34.88 | 62.38 |
+| diningtable | 48.74 | 67.32 | 63.85 |
+|     dog     |  47.5 | 62.49 | 66.45 |
+|    horse    | 36.94 | 80.01 |  40.7 |
+|  motorbike  | 55.06 | 66.38 | 76.35 |
+|    person   | 42.69 | 48.65 | 77.69 |
+| pottedplant | 53.32 | 83.17 | 59.77 |
+|    sheep    | 37.87 |  70.2 | 45.13 |
+|     sofa    | 35.97 | 76.34 | 40.48 |
+|    train    | 63.48 | 78.09 | 77.23 |
+|  tvmonitor  | 46.15 | 77.05 | 53.51 |
++-------------+-------+-------+-------+
+Summary:
+
++-------+------+-------+-------+
+|  aAcc | mIoU |  mAcc | mPrec |
++-------+------+-------+-------+
+| 63.37 | 47.3 | 67.24 | 64.19 |
++-------+------+-------+-------+
+
+========== Results ==========
+  aAcc: 0.6337
+  mIoU: 0.4730
+  mAcc: 0.6724
+  mPrec: 0.6419
+  IoU.aeroplane: 0.7286
+  IoU.bicycle: 0.5273
+  IoU.bird: 0.5543
+  IoU.boat: 0.2621
+  IoU.bottle: 0.4711
+  IoU.bus: 0.5810
+  IoU.car: 0.6502
+  IoU.cat: 0.5463
+  IoU.chair: 0.1744
+  IoU.cow: 0.2882
+  IoU.diningtable: 0.4874
+  IoU.dog: 0.4750
+  IoU.horse: 0.3694
+  IoU.motorbike: 0.5506
+  IoU.person: 0.4269
+  IoU.pottedplant: 0.5332
+  IoU.sheep: 0.3787
+  IoU.sofa: 0.3597
+  IoU.train: 0.6348
+  IoU.tvmonitor: 0.4615
+  Acc.aeroplane: 0.8568
+  Acc.bicycle: 0.8101
+  Acc.bird: 0.6244
+  Acc.boat: 0.7590
+  Acc.bottle: 0.6443
+  Acc.bus: 0.6534
+  Acc.car: 0.8490
+  Acc.cat: 0.6072
+  Acc.chair: 0.1977
+  Acc.cow: 0.3488
+  Acc.diningtable: 0.6732
+  Acc.dog: 0.6249
+  Acc.horse: 0.8001
+  Acc.motorbike: 0.6638
+  Acc.person: 0.4865
+  Acc.pottedplant: 0.8317
+  Acc.sheep: 0.7020
+  Acc.sofa: 0.7634
+  Acc.train: 0.7809
+  Acc.tvmonitor: 0.7705
+  Prec.aeroplane: 0.8296
+  Prec.bicycle: 0.6017
+  Prec.bird: 0.8314
+  Prec.boat: 0.2859
+  Prec.bottle: 0.6368
+  Prec.bus: 0.8399
+  Prec.car: 0.7351
+  Prec.cat: 0.8449
+  Prec.chair: 0.5968
+  Prec.cow: 0.6238
+  Prec.diningtable: 0.6385
+  Prec.dog: 0.6645
+  Prec.horse: 0.4070
+  Prec.motorbike: 0.7635
+  Prec.person: 0.7769
+  Prec.pottedplant: 0.5977
+  Prec.sheep: 0.4513
+  Prec.sofa: 0.4048
+  Prec.train: 0.7723
+  Prec.tvmonitor: 0.5351

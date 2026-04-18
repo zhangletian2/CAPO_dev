@@ -1,0 +1,77 @@
+[GPU 2] n_ctx=8 (--n_ctx 8) — start
+[GPU 2] nctx=8 ood/I
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 20.000 Acc@5 80.000
+[GPU 2] nctx=8 ood/A
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 20.000 Acc@5 40.000
+[GPU 2] nctx=8 ood/R
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 20.000 Acc@5 40.000
+[GPU 2] nctx=8 ood/K
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 20.000 Acc@5 40.000
+[GPU 2] nctx=8 ood/V
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 40.000 Acc@5 40.000
+[GPU 2] nctx=8 fewshot/dtd
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 40.000 Acc@5 80.000
+[GPU 2] nctx=8 fewshot/flower102
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 40.000 Acc@5 60.000
+[GPU 2] nctx=8 fewshot/food101
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 80.000 Acc@5 80.000
+[GPU 2] nctx=8 fewshot/cars
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 60.000 Acc@5 80.000
+[GPU 2] nctx=8 fewshot/sun397
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 20.000 Acc@5 40.000
+[GPU 2] nctx=8 fewshot/aircraft
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 0.000 Acc@5 0.000
+[GPU 2] nctx=8 fewshot/pets
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 60.000 Acc@5 80.000
+[GPU 2] nctx=8 fewshot/caltech101
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 100.000 Acc@5 100.000
+[GPU 2] nctx=8 fewshot/ucf101
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 60.000 Acc@5 80.000
+[GPU 2] nctx=8 fewshot/eurosat
+Random initialization: initializing a generic context
+Random initialization: initializing a generic context
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 40.000 Acc@5 100.000
+[GPU 2] n_ctx=8 — ALL DONE

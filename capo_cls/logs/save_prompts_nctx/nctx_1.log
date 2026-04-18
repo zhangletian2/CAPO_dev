@@ -1,0 +1,47 @@
+[GPU 0] n_ctx=1 (--ctx_init a) — start
+[GPU 0] nctx=1 ood/I
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 60.000 Acc@5 100.000
+[GPU 0] nctx=1 ood/A
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 40.000 Acc@5 60.000
+[GPU 0] nctx=1 ood/R
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 40.000 Acc@5 100.000
+[GPU 0] nctx=1 ood/K
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 60.000 Acc@5 60.000
+[GPU 0] nctx=1 ood/V
+Test with selection_p=0.1, tau=0.4, beta=0.9:
+ *  Acc@1 60.000 Acc@5 80.000
+[GPU 0] nctx=1 fewshot/dtd
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 40.000 Acc@5 60.000
+[GPU 0] nctx=1 fewshot/flower102
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 60.000 Acc@5 80.000
+[GPU 0] nctx=1 fewshot/food101
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 100.000 Acc@5 100.000
+[GPU 0] nctx=1 fewshot/cars
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 80.000 Acc@5 100.000
+[GPU 0] nctx=1 fewshot/sun397
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 20.000 Acc@5 80.000
+[GPU 0] nctx=1 fewshot/aircraft
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 20.000 Acc@5 40.000
+[GPU 0] nctx=1 fewshot/pets
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 80.000 Acc@5 80.000
+[GPU 0] nctx=1 fewshot/caltech101
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 100.000 Acc@5 100.000
+[GPU 0] nctx=1 fewshot/ucf101
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 40.000 Acc@5 80.000
+[GPU 0] nctx=1 fewshot/eurosat
+Test with selection_p=0.1, tau=0.4, beta=0.7:
+ *  Acc@1 20.000 Acc@5 80.000
+[GPU 0] n_ctx=1 — ALL DONE

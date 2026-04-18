@@ -1,0 +1,11 @@
+evaluating: food101
+ *  Acc@1 70.983 Acc@5 90.284
+=> Acc. on testset [food101]: @1 70.9834976196289/ @5 90.28382873535156
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+food101	
+
+70.98	
+

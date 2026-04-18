@@ -1,0 +1,11 @@
+evaluating: dtd
+ *  Acc@1 43.440 Acc@5 69.444
+=> Acc. on testset [dtd]: @1 43.43971633911133/ @5 69.44444274902344
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+dtd	
+
+43.44	
+

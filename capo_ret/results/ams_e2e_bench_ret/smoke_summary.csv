@@ -1,0 +1,3 @@
+task,upload_kb,download_kb,t_teacher_ms,t_adapt_ms,t_final_ms,t_total_ms,total_ms@1000Mbps,total_ms@100Mbps,total_ms@50Mbps,total_ms@10Mbps,total_ms@5Mbps,total_ms@1Mbps
+i2t,46.1924,0.0,175.3439,969.584,8.4183,1153.3462,1153.7246,1157.1303,1160.9144,1191.187,1229.0278,1531.7543
+t2i,0.0537,0.0,105.2162,288.4047,12.938,406.5589,406.5593,406.5633,406.5677,406.6029,406.6469,406.9988

@@ -1,0 +1,47 @@
+GPU 0: NVIDIA GeForce RTX 4090
+text_encoder trainable: 148 tensors, 153573376 B (149974.00 KB, 146.46 MB)
+Avg bitstream/image: 4.24 KB  (built-in table (new))
+
+────────────────────────────────────────────────────────────
+AMS Benchmarking 500 samples  (warmup=10)
+  lr=1e-06  tta_steps=1  bs=64
+────────────────────────────────────────────────────────────
+  [   200/500]  acc=73.16%  cloud=32.8ms  distill=162.7ms  final=24.1ms
+  [   400/500]  acc=72.82%  cloud=32.9ms  distill=131.5ms  final=21.7ms
+
+CSV saved → results/ams_bench/bench_food101.csv  (490 rows)
+
+========================================================================
+  AMS E2E Benchmark  |  Dataset: food101  |  GPU: NVIDIA GeForce RTX 4090
+  Samples: 490   (100% uplink — all samples)
+========================================================================
+
+  [Accuracy]
+    Post-TTA:  73.06%
+
+  [Communication per sample]
+    Upload  (compressed image):         4.24 KB
+    Download (text_encoder):       149974.00 KB
+    Total:                         149978.24 KB
+
+  [Compute time per sample (ms)]
+    Cloud inference:       32.98 ±  0.47
+    KL distillation:     143.10 ± 23.90
+    Edge final infer:     24.63 ±  6.62
+    ── Total compute:    200.71
+
+  [Total latency under different bandwidths (ms)]
+       Bandwidth        Comm    Compute   Sync Total
+    ────────────  ──────────  ─────────  ───────────
+        1000 Mbps     1228.62     200.71      1429.34
+         100 Mbps    12286.22     200.71     12486.93
+          50 Mbps    24572.43     200.71     24773.15
+          10 Mbps   122862.17     200.71    123062.89
+           5 Mbps   245724.35     200.71    245925.06
+           1 Mbps  1228621.74     200.71   1228822.46
+
+  [Trainable parameters (text_encoder)]
+    Download size:  149974.00 KB  (146.46 MB)
+
+========================================================================
+

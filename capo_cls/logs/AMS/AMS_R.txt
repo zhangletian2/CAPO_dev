@@ -1,0 +1,11 @@
+evaluating: R
+ *  Acc@1 69.570 Acc@5 87.697
+=> Acc. on testset [R]: @1 69.56999969482422/ @5 87.69667053222656
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+R	
+
+69.57	
+

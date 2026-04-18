@@ -1,0 +1,11 @@
+evaluating: caltech101
+ *  Acc@1 87.708 Acc@5 98.053
+=> Acc. on testset [caltech101]: @1 87.7079086303711/ @5 98.05274200439453
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+caltech101	
+
+87.71	
+

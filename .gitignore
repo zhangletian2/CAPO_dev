@@ -1,0 +1,64 @@
+# ==== Symlinks to external data/weights (created by setup.sh) ====
+# Leading slash anchors to repo root only; without it git would also ignore
+# third_party/*/datasets/ and capo_seg/configs/_base_/datasets/.
+/datasets/
+capo_cls/clip_cache
+capo_cls/dataset
+capo_cls/checkpoints
+capo_cls/saved_params_ams
+capo_cls/saved_prompts_nctx
+
+capo_ret/output
+capo_ret/pretrained
+capo_ret/saved_params_ams_ret
+capo_ret/saved_prompts_ret
+capo_ret/dataset
+
+capo_seg/pretrain
+capo_seg/data
+capo_seg/work_dirs
+
+capo_joint/work_dirs
+
+enc2dec/models
+enc2dec/intermediate
+enc2dec/intermediate_qp7
+
+# ==== Logs and results ARE tracked (small, useful for reproducibility) ====
+# capo_cls/logs         — tracked
+# capo_cls/results      — tracked
+# capo_ret/logs         — tracked
+# capo_ret/results      — tracked
+# capo_seg/logs         — tracked
+# enc2dec/logs          — tracked
+
+# ==== Python cruft ====
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+.ipynb_checkpoints/
+
+# ==== mmseg/LAVIS install residue ====
+third_party/mmseg/mmsegmentation.egg-info/
+third_party/mmseg/build/
+third_party/mmseg/.mim/
+third_party/lavis/*.egg-info/
+
+# ==== Compiled native binary (rebuilt from .cpp via setup.sh) ====
+enc2dec/module_arithmeticcoding
+
+# ==== Local env file (user-specific, created from .env.example) ====
+.env
+
+# ==== Model weights — only the small .npy helpers are tracked ====
+*.pt
+*.pth
+*.pkl
+# *.npy is NOT ignored — capo_cls/utils/{prompt_cloud,text_projection}.npy are tracked
+
+# ==== IDE / editor ====
+.vscode/
+.idea/
+.DS_Store

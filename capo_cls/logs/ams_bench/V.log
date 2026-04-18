@@ -1,0 +1,50 @@
+GPU 4: NVIDIA GeForce RTX 4090
+text_encoder trainable: 148 tensors, 153573376 B (149974.00 KB, 146.46 MB)
+Avg bitstream/image: 7.13 KB  (built-in table (new))
+
+────────────────────────────────────────────────────────────
+AMS Benchmarking 500 samples  (warmup=10)
+  lr=1e-06  tta_steps=1  bs=64
+────────────────────────────────────────────────────────────
+Traceback (most recent call last):
+  File "./ams_e2e_bench.py", line 470, in <module>
+    main()
+  File "./ams_e2e_bench.py", line 466, in main
+    run_benchmark(p.parse_args())
+  File "./ams_e2e_bench.py", line 384, in run_benchmark
+    t_cloud_ms, t_distill_ms = ams_tta_timed(
+  File "./ams_e2e_bench.py", line 147, in ams_tta_timed
+    output_device = edge_model(None, edge_feat)
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data4/workspace/zlt/CAPO_cls/clip/custom_clip_device.py", line 572, in forward
+    return self.inference(image_features)
+  File "/data4/workspace/zlt/CAPO_cls/clip/custom_clip_device.py", line 562, in inference
+    text_features = self.get_text_features()
+  File "/data4/workspace/zlt/CAPO_cls/clip/custom_clip_device.py", line 547, in get_text_features
+    t_features = self.text_encoder(prompts, tokenized_prompts)
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data4/workspace/zlt/CAPO_cls/clip/custom_clip_device.py", line 53, in forward
+    x = self.transformer(x)
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data4/workspace/zlt/CAPO_cls/clip/model.py", line 204, in forward
+    return self.resblocks(x)
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data4/workspace/zlt/CAPO_cls/clip/model.py", line 192, in forward
+    x = x + self.mlp(self.ln_2(x))
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data4/workspace/zlt/CAPO_cls/clip/model.py", line 163, in forward
+    ret = super().forward(x.type(torch.float32))
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/modules/normalization.py", line 190, in forward
+    return F.layer_norm(
+  File "/home/user/anaconda3/envs/ceo/lib/python3.8/site-packages/torch/nn/functional.py", line 2515, in layer_norm
+    return torch.layer_norm(input, normalized_shape, weight, bias, eps, torch.backends.cudnn.enabled)
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 152.00 MiB (GPU 4; 23.65 GiB total capacity; 22.77 GiB already allocated; 144.69 MiB free; 23.04 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

@@ -1,0 +1,11 @@
+evaluating: sun397
+ *  Acc@1 60.967 Acc@5 87.652
+=> Acc. on testset [sun397]: @1 60.96725082397461/ @5 87.65238952636719
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+sun397	
+
+60.97	
+

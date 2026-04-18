@@ -1,0 +1,11 @@
+evaluating: cars
+ *  Acc@1 59.843 Acc@5 91.494
+=> Acc. on testset [cars]: @1 59.84330368041992/ @5 91.49359893798828
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+cars	
+
+59.84	
+

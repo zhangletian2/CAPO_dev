@@ -1,0 +1,2 @@
+task,idx,upload_kb,download_kb,t_edge_prep_ms,t_cloud_prompt_ms,t_edge_distill_ms,t_final_ms
+t2i,0,0.0537,8.0,0.0,202.8398,36.9544,9.9939

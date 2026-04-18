@@ -1,0 +1,11 @@
+evaluating: pets
+ *  Acc@1 82.093 Acc@5 96.620
+=> Acc. on testset [pets]: @1 82.09320831298828/ @5 96.62033081054688
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+pets	
+
+82.09	
+

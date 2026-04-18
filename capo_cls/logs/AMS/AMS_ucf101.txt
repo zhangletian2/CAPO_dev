@@ -1,0 +1,11 @@
+evaluating: ucf101
+ *  Acc@1 60.878 Acc@5 83.426
+=> Acc. on testset [ucf101]: @1 60.87760925292969/ @5 83.42584991455078
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+ucf101	
+
+60.88	
+

@@ -1,0 +1,11 @@
+evaluating: aircraft
+ *  Acc@1 18.842 Acc@5 50.825
+=> Acc. on testset [aircraft]: @1 18.841882705688477/ @5 50.82508087158203
+======== Result Summary ========
+params: nstep	lr	bs
+params: 1	0.005	64
+		 [set_id] 		 Top-1 acc. 		 Top-5 acc.
+aircraft	
+
+18.84	
+

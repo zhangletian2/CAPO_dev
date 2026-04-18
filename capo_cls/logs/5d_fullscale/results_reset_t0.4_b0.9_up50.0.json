@@ -1,0 +1,120 @@
+{
+  "metrics": {
+    "method": "reset_t0.4_b0.9_up50.0",
+    "desc": "CEO default \u2014 reset T+S per sample",
+    "domains": [
+      "I",
+      "A",
+      "V",
+      "R",
+      "K"
+    ],
+    "elapsed_s": 103191.6392493248,
+    "baseline": {
+      "I": {
+        "student": 58.168
+      },
+      "A": {
+        "student": 21.813333333333336
+      },
+      "V": {
+        "student": 51.49
+      },
+      "R": {
+        "student": 56.12666666666667
+      },
+      "K": {
+        "student": 33.358879129084876
+      }
+    },
+    "mean_baseline_s": 44.191375825816976,
+    "phase1": {
+      "I": {
+        "pre_s": 58.168,
+        "pre_t": null,
+        "post_s": 63.17,
+        "post_t": 67.366,
+        "uplink": 49.99
+      },
+      "A": {
+        "pre_s": 22.506666666666668,
+        "pre_t": null,
+        "post_s": 26.52,
+        "post_t": 48.70666666666666,
+        "uplink": 50.72
+      },
+      "V": {
+        "pre_s": 52.739999999999995,
+        "pre_t": null,
+        "post_s": 56.81,
+        "post_t": 61.62,
+        "uplink": 49.84
+      },
+      "R": {
+        "pre_s": 57.47666666666667,
+        "pre_t": null,
+        "post_s": 65.23,
+        "post_t": 76.09,
+        "uplink": 49.95
+      },
+      "K": {
+        "pre_s": 32.54534378745898,
+        "pre_t": null,
+        "post_s": 37.640747509284914,
+        "post_t": 46.71147006229244,
+        "uplink": 50.10120065240032
+      }
+    },
+    "phase2": {
+      "I": {
+        "s": 56.528
+      },
+      "A": {
+        "s": 22.89333333333333
+      },
+      "V": {
+        "s": 50.28
+      },
+      "R": {
+        "s": 59.45333333333333
+      },
+      "K": {
+        "s": 33.00909823340997
+      }
+    },
+    "mean_post_s": 49.87414950185699,
+    "mean_frozen_s": 44.43275298001534,
+    "mean_gain": 5.682773676040014,
+    "phase2_gain": 0.2413771541983607,
+    "BT": -5.441396521841657
+  },
+  "args": {
+    "data": "./dataset",
+    "domains": "IAVRK",
+    "samples_per_domain": 999999,
+    "dataset_mode": "test",
+    "arch": "RN50",
+    "cloud_arch": "ViT-B/16",
+    "resolution": 224,
+    "workers": 8,
+    "batch_size": 64,
+    "lr": 0.005,
+    "print_freq": 500,
+    "gpu": 4,
+    "selection_p": 0.1,
+    "tta_steps": 1,
+    "n_ctx": 4,
+    "ctx_init": "a_photo_of_a",
+    "seed": 0,
+    "tau": 0.4,
+    "beta": 0.9,
+    "uplink_percent": 50.0,
+    "method": "reset",
+    "ewc_lambda": 10000.0,
+    "ewc_gamma": 0.95,
+    "ewc_anchor": "domain",
+    "eval_teacher": false,
+    "output_dir": "logs/5d_fullscale",
+    "deterministic": false
+  }
+}
